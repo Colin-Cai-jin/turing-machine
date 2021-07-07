@@ -163,8 +163,6 @@ int run_turing_machine(void)
 #ifdef TRACE
 		fprintf(stderr, "tape[%d] <= %d\n", tape_pos, (int)p->next_letter);
 #endif
-		if(current_stat == STAT_ACCEPT || current_stat == STAT_REJECT)
-			return current_stat;
 		if(p->dir == (char)0) {
 			tape_pos++;
 #ifndef BELIEVE_ENOUGH_TAPE
@@ -183,6 +181,8 @@ int run_turing_machine(void)
 #endif
 			tape_pos--;
 		}
+		if(current_stat == STAT_ACCEPT || current_stat == STAT_REJECT)
+			return current_stat;
 	}
 }
 
