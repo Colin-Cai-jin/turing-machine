@@ -157,14 +157,14 @@ int run_turing_machine(void)
 		fprintf(stderr, "\ncurrent_stat = %d tape_pos = %d \n", current_stat, tape_pos);
 		output_result(stderr);
 #endif
+		if(current_stat == STAT_ACCEPT || current_stat == STAT_REJECT)
+			return current_stat;
 		p = &rules[current_stat][tape[tape_pos]];
 		current_stat = p->next_stat;
 		tape[tape_pos] = p->next_letter;
 #ifdef TRACE
 		fprintf(stderr, "tape[%d] <= %d\n", tape_pos, (int)p->next_letter);
 #endif
-		if(current_stat == STAT_ACCEPT || current_stat == STAT_REJECT)
-			return current_stat;
 		if(p->dir == (char)0) {
 			tape_pos++;
 #ifndef BELIEVE_ENOUGH_TAPE
