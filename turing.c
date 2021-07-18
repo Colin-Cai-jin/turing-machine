@@ -58,23 +58,33 @@ int read_rules(const char *turing_machine_desc)
 			sscanf(s_letter, "%d", &letter);
 			if(s_next_stat[0] >= '0' && s_next_stat[0] <= '9') {
 				sscanf(s_next_stat, "%d", &next_stat);
-			} else {
+			} else if(strcmp(s_next_stat, "-") == 0) {
 				next_stat = stat;
+			} else {
+				printf("\nWRONG %s:%d\n", __FILE__, __LINE__);
+				exit(1);
 			}
 			if(s_next_letter[0] >= '0' && s_next_letter[0] <= '9') {
 				sscanf(s_next_letter, "%d", &next_letter);
-			} else {
+			} else if(strcmp(s_next_letter, "-") == 0) {
 				next_letter = letter;
+			} else {
+				printf("\nWRONG %s:%d\n", __FILE__, __LINE__);
+				exit(1);
 			}
-			if(s_dir[0] == 'R' || s_dir[0] == 'r' || s_dir[0] == '0')
+			if(s_dir[0] == 'R' || s_dir[0] == 'r' || s_dir[0] == '0') {
 				dir = 0;
-			else
+			} else if(s_dir[0] == 'L' || s_dir[0] == 'l' || s_dir[0] == '1') {
 				dir = 1;
+			} else {
+				printf("\nWRONG %s:%d\n", __FILE__, __LINE__);
+				exit(1);
+			}
 			rules[stat][letter].next_stat = next_stat;
 			rules[stat][letter].next_letter = next_letter;
 			rules[stat][letter].dir = dir;
-		} else {
-			for(letter=1;letter<=max_letter;letter++) {
+		} else if(strcmp(s_letter, "-") == 0 || strcmp(s_letter, "*") == 0) {
+			for(letter=(strcmp(s_letter, "-")==0?1:0);letter<=max_letter;letter++) {
 				if(s_next_stat[0] >= '0' && s_next_stat[0] <= '9') {
 					sscanf(s_next_stat, "%d", &next_stat);
 				} else {
@@ -93,6 +103,9 @@ int read_rules(const char *turing_machine_desc)
 				rules[stat][letter].next_letter = next_letter;
 				rules[stat][letter].dir = dir;
 			}
+		} else {
+			printf("\nWRONG %s:%d\n", __FILE__, __LINE__);
+			exit(1);
 		}
 	}
 

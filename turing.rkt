@@ -40,7 +40,7 @@
      (map string->number s3)
      (let* ((no1 (lambda (s) (string-ref s 0)))
 	    (nc? (lambda (c) (char<=? #\0 c #\9)))
-	    (t (lambda (s) (if (nc? (no1 s)) (string->number s) #f)))
+	    (t (lambda (s) (if (nc? (no1 s)) (string->number s) s)))
 	    (t2 (lambda (s) (let ((c (no1 s)))
 			     (cond
 			      ((nc? c) (string->number s))
@@ -50,16 +50,16 @@
 	    (tr (lambda (s) (append
 			     (take s 2)
 			     (map
-			      (lambda (a b) (or a b))
+			      (lambda (a b) (if (number? a) a b))
 			      (drop (take s 4) 2)
 			      (take s 2))
 			     (list (last s)))))
 	    (s4 (map (lambda (s n) ((if (= n 4) t2 t) s)) s3 (range 5)))) 
-      (if (second s4)
+      (if (number? (second s4))
        (list (tr s4))
        (map
 	(lambda (n) (tr (list-set s4 1 n)))
-	(range 1 (vector-length (vector-ref ret 0)))))))))
+	(range (if (string=? "-" (second s4)) 1 0) (vector-length (vector-ref ret 0)))))))))
  
   (let ((s (read-line port)))
    (if (eof-object? s)
