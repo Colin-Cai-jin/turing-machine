@@ -13,21 +13,27 @@ raco exe -o turing turing.rkt
 
 # Description
 In this simulator, we indicate states in number.  
+
 | state | descrition |  
 | :---  | :--------- |  
 | 0 | initial state |  
 | 1 | accept state |  
 | 2 | reject state |  
+
 1/2 means that the turing machine stops to work.  
 And, we can use other states.  
 We indicate letters in number, too.  
+
 | letter | description |  
 | :---  | :--------- |  
 |0      | BLANK      |  
+
 And, we can use other letters.
 
 Tuing machines include some rules.  
 Each rule is as following:  
+
+|Rule|
 | :---: |  :---: |  :---: |  :---: |  :---: |
 | current-state | current-letter | next-state | next-letter | head-direction |
 
