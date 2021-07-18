@@ -32,10 +32,9 @@ And, we can use other letters.
 
 Tuing machines include some rules.  
 Each rule is as following:  
-
-|Rule|
-| :---: |  :---: |  :---: |  :---: |  :---: |
-| current-state | current-letter | next-state | next-letter | head-direction |
+```
+current-state current-letter next-state next-letter head-direction 
+```
 
 head-direction:  
 |direction|description|
@@ -43,8 +42,8 @@ head-direction:
 |0/R  | move head to the right |  
 |1/L  | move head to the left |  
 
-And, we can use '-' in the next-state/next-letter fields that means the state/letter doesn't change.
-And, we can use '-' in the current-letter field that means this rule sutes for all the letters except BLANK.
+And, we can use '-' in the next-state/next-letter fields that means the state/letter doesn't change.  
+And, we can use '-' in the current-letter field that means this rule sutes for all the letters except BLANK.  
 And, we can use '*' in the current-letter field that means this rule sutes for all the letters including BLANK.
 
 # Language
