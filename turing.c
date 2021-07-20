@@ -30,11 +30,11 @@ int read_rules(const char *turing_machine_desc)
 	int stat, letter, next_stat, next_letter, dir;
 	char s_letter[10], s_next_stat[10], s_next_letter[10];
 	char s_dir[10];
-	char buf[100];
+	char buf[10000];
 	char *p;
 
 	f = fopen(turing_machine_desc, "rb");
-	while(fgets(buf, 99, f) != NULL) {
+	while(fgets(buf, sizeof(buf)-1, f) != NULL) {
 		p = strchr(buf, '#');
 		if(p != NULL)
 			*p = '\0';
@@ -48,7 +48,7 @@ int read_rules(const char *turing_machine_desc)
 		rules[i] = rules[i-1]+(max_letter+1);
 	for(i=0;i<(max_stat+1) * (max_letter+1);i++)
 		rules[0][i].next_stat = STAT_REJECT;
-	while(fgets(buf, 99, f) != NULL) {
+	while(fgets(buf, sizeof(buf)-1, f) != NULL) {
 		p = strchr(buf, '#');
 		if(p != NULL)
 			*p = '\0';
