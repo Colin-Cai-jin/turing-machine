@@ -9,22 +9,22 @@ s/#.*|^[ \t]+|[ \t]+$//g
 s/[ \t]+/ /g
 
 #number of characters
-/^([0-9])+ +([0-9]+) *$/ {
-	s//\2/
+/^[0-9]+ +([0-9]+) *$/ {
+	s//\1/
 
 	:each_char
 	/^1($| )/ b finish_all_chars
 	s/^[^ ]+/& &/
-	/^[0-9]*([1-9]) .*$/b 1
+	/^[0-9]*([1-9]) .*$/b minus1_direct
 	s/^[0-9]+/&;/
-	:minus1
+	:0minus1
 	s/0;/;9/
-	t minus1
-	/^[0-9]*([2-9];).*$/b 1
+	t 0minus1
+	/^[0-9]*([2-9];).*$/b minus1_direct
 	s/1;/0/
 	s/^0+//
 	t each_char
-	:1
+	:minus1_direct
 	h
 	s//\1/
 	y/123456789/012345678/
