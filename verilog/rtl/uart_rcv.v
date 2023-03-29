@@ -40,7 +40,7 @@ threshold_counter #(.WIDTH(SAMPLE_WIDTH_BITS)) U1
 	.is_zero(en_sample)
 );
 
-localparam SUM_BITS = $clog2(SAMPLE_BITS);
+localparam SUM_BITS = $clog2(SAMPLE_BITS + 1);
 localparam JUDGE_THRESHOLD = SAMPLE_BITS / 2;
 localparam START_WAIT = JUDGE_THRESHOLD;
 localparam START_WAIT_BITS = START_WAIT > 1 ? $clog2(START_WAIT) : 1;
