@@ -1,5 +1,7 @@
 #This is a decider
 #Language:   {w|w is in 1*, |w|=2**n, n=0,1,2...}
+#Time complexity: O(n^2)
+#Space complexity: O(1)
 #MAX_STAT	MAX_LETTER
 9		4
 #S -> STATE

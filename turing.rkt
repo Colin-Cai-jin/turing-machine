@@ -7,7 +7,11 @@
    (if (eof-object? x)
     ret
     (_ (cons x ret)))))
- (list->vector (reverse (_ '()))))
+ (let ((lst (reverse (_ '()))))
+   (list->vector
+     (if (null? lst)
+	 '(0)
+	 lst))))
 
 (define (create-turing rule-file)
  (define (make-init-matrix m n)

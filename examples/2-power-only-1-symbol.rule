@@ -1,0 +1,61 @@
+#This is a decider
+#Language:   {w|w is in 1*, |w|=2**n, n=0,1,2...}
+#This TM uses 2 letters only: blank(0) and symbol(1)
+#Time complexity: O(n^2)
+#Space complexity: O(log(n))
+#MAX_STAT	MAX_LETTER
+21		1
+#S -> STATE
+#L -> LETTER
+#NS -> NEXT STATE
+#NL -> NEXT LETTER
+#DIR -> DIRECT
+#S	L	NS	NL	DIR
+0	1	3	0	0
+
+3	0	1	-	0
+3	1	4	-	0
+
+4	0	5	-	0
+4	1	-	-	0
+
+5	0	6	-	0
+
+6	0	7	1	1
+
+7	0	8	-	1
+
+8	0	9	-	1
+
+9	0	18	-	0
+9	1	10	-	1
+
+10	0	11	-	0
+10	1	-	-	1
+
+11	1	12	0	0
+
+12	0	13	-	0
+12	1	-	-	0
+
+13	0	14	-	0
+
+14	0	16	1	1
+14	1	15	-	0
+
+15	0	14	1	0
+15	1	17	0	1
+
+16	*	17	-	1
+
+17	0	9	-	1
+17	1	16	-	1
+
+#Check the counter
+18	0	19	-	0
+19	0	20	-	0
+
+20	0	21	-	0
+20	1	-	-	0
+
+21	0	1	-	0
